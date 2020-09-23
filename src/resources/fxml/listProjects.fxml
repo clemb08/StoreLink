@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kenavo.finder.controllers.ListProjectsController">
    <children>
-      <TableView fx:id="tableLinks" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tableLinks" layoutX="14.0" layoutY="27.0" prefHeight="373.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
         <columns>
           <TableColumn fx:id="columnTitle" editable="false" prefWidth="155.0" text="Title" />
-          <TableColumn fx:id="columnLink" editable="false" prefWidth="149.0" text="Link" />
-            <TableColumn fx:id="columnDescription" editable="false" prefWidth="295.0" text="Description" />
+          <TableColumn fx:id="columnDescription" editable="false" prefWidth="266.0" text="Description" />
+            <TableColumn fx:id="columnGoTo" editable="false" prefWidth="65.0" sortable="false" text="Go To" />
+            <TableColumn fx:id="columnGoTo1" editable="false" prefWidth="56.0" sortable="false" />
+            <TableColumn fx:id="columnGoTo11" editable="false" prefWidth="273.0" sortable="false" />
         </columns>
       </TableView>
+      <MenuBar layoutY="7.0" prefHeight="29.0" prefWidth="600.0" AnchorPane.bottomAnchor="374.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Create project" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
