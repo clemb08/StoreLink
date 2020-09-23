@@ -7,24 +7,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.kenavo.finder.utils.Navigation;
 
 import java.io.IOException;
 
 public class MainController {
 
+    private Navigation navigation = new Navigation();
+
     @FXML
     public void navigateToCreateProject(MouseEvent event) throws IOException {
-        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent createProject = FXMLLoader.load(getClass().getResource("/resources/fxml/createProject.fxml"));
-        primaryStage.setScene(new Scene(createProject));
-        primaryStage.show();
+        navigation.navigateToCreateProject(event);
     }
 
     @FXML
     public void navigateToListProjects(MouseEvent event) throws IOException {
-        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent listProjects = FXMLLoader.load(getClass().getResource("/resources/fxml/listProjects.fxml"));
-        primaryStage.setScene(new Scene(listProjects));
-        primaryStage.show();
+        navigation.navigateToListProjects(event);
     }
 }
