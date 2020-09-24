@@ -1,53 +1,62 @@
 package org.kenavo.finder.utils;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import org.kenavo.finder.models.Link;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 public class AddColumn {
 
-    public static void addButtonToTable(TableColumn<Link, Void> goToColumn, String url) {
+    public static Callback<TableColumn<Link, Void>, TableCell<Link, Void>> addDeleteButton(TableView<Link> table) {
 
-        Callback<TableColumn<Link, Void>, TableCell<Link, Void>> cellFactory = new Callback<TableColumn<Link, Void>, TableCell<Link, Void>>() {
+        return new Callback<>() {
             @Override
-            public TableCell<Link, Void> call(final TableColumn<Link, Void> param) {
-                final TableCell<Link, Void> cell = new TableCell<Link, Void>() {
+            public TableCell call(final TableColumn<Link, Void> param) {
+                return new TableCell<Link, String>() {
 
-                    private final Button btn = new Button("Go To");
+                    final Button btn = new Button("Delete");
 
                     {
-                        btn.setOnAction((ActionEvent event) -> {
-                                OpenUrl browser = new OpenUrl();
-                                browser.openUrl(url);
-                        });
+                        btn.setOnAction(event -> table.getItems().remove(getIndex()));
                     }
 
                     @Override
-                    public void updateItem(Void item, boolean empty) {
+                    public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
                             setGraphic(null);
                         } else {
                             setGraphic(btn);
                         }
+                        setText(null);
                     }
                 };
-                return cell;
             }
         };
+    }
 
-        goToColumn.setCellFactory(cellFactory);
+    public static void addLinkButton(TableColumn column) {
+        column.setCellFactory(param -> new TableCell<Link, String>() {
+            private final Button linkButton = new Button("Go To");
 
+            @Override
+            public void updateItem(String data, boolean empty) {
+                super.updateItem(data, empty);
+
+                if (data == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                setGraphic(linkButton);
+                linkButton.setOnAction(event -> {
+                    OpenUrl browser = new OpenUrl();
+                    browser.openUrl(data);
+                });
+
+            }
+        });
     }
 }

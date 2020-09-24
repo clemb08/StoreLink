@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import org.kenavo.finder.models.Link;
 import org.kenavo.finder.services.LinkService;
 import org.kenavo.finder.utils.MessageDialog;
@@ -56,7 +55,7 @@ public class CreateProjectController {
     }
 
     @FXML
-    private void addKeywords(MouseEvent event){
+    private void addKeywords(){
         String keyword = newKeyword.getText();
         System.out.println(keyword);
         if(keyword.trim().isEmpty()){
@@ -68,7 +67,7 @@ public class CreateProjectController {
     }
 
     @FXML
-    private void deleteKeywords(MouseEvent event){
+    private void deleteKeywords(){
         int selectedKeyword = listViewKeywords.getSelectionModel().getSelectedIndex();
         String selectedKeywordValue = listViewKeywords.getSelectionModel().getSelectedItem();
         if (selectedKeyword >= 0) {

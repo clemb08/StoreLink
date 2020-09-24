@@ -40,8 +40,9 @@ public class LinkService {
         Path path = Path.of("src/resources/links/links.txt");
         boolean exists = Files.exists(path);
 
+        if(!exists)
             try (BufferedReader reader =
-                         Files.newBufferedReader(path, StandardCharsets.UTF_8);) {
+                         Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
 
                 String line = reader.readLine();
                 List<Link> links = new ArrayList<>();
@@ -58,4 +59,5 @@ public class LinkService {
             }
         return null;
     }
+
 }

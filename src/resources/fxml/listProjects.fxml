@@ -14,8 +14,8 @@
           <TableColumn fx:id="columnTitle" editable="false" prefWidth="155.0" text="Title" />
           <TableColumn fx:id="columnDescription" editable="false" prefWidth="266.0" text="Description" />
             <TableColumn fx:id="columnGoTo" editable="false" prefWidth="65.0" sortable="false" text="Go To" />
-            <TableColumn fx:id="columnGoTo1" editable="false" prefWidth="56.0" sortable="false" />
-            <TableColumn fx:id="columnGoTo11" editable="false" prefWidth="273.0" sortable="false" />
+            <TableColumn fx:id="columnEdit" editable="false" prefWidth="56.0" sortable="false" />
+            <TableColumn fx:id="columnDelete" editable="false" prefWidth="273.0" sortable="false" />
         </columns>
       </TableView>
       <MenuBar layoutY="7.0" prefHeight="29.0" prefWidth="600.0" AnchorPane.bottomAnchor="374.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
