@@ -15,8 +15,8 @@ import org.kenavo.finder.services.LinkService;
 import org.kenavo.finder.utils.MessageDialog;
 import org.kenavo.finder.utils.Navigation;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class EditLinkController {
 
@@ -29,6 +29,7 @@ public class EditLinkController {
 
     private ObservableList<String> keywords = FXCollections.observableArrayList();
     private LinkService linkService = new LinkService();
+    private Navigation nav = new Navigation();
 
     public void setLink(Link link) {
         editId.setText(link.getId());
@@ -41,26 +42,25 @@ public class EditLinkController {
     }
 
     @FXML
-    private void editLink(ActionEvent event){
+    private void editLink(ActionEvent event) throws IOException {
         Link link = linkService.findById(editId.getText());
+        int indexLink = linkService.findIndex(link);
         List<Link> links = Main.links;
+        Link newLink = new Link();
 
-        link.setId(editId.getText());
-        link.setTitle(editTitle.getText());
-        link.setLink(editLink.getText());
-        link.setDescription(editDescription.getText());
-        link.setKeywords(editListViewKeywords.getItems());
+        newLink.setId(editId.getText());
+        newLink.setTitle(editTitle.getText());
+        newLink.setLink(editLink.getText());
+        newLink.setDescription(editDescription.getText());
+        newLink.setKeywords(editListViewKeywords.getItems());
 
-        Predicate<Link> condition = removedLink -> (removedLink.getId() == link.getId());
-        links.removeIf(condition);
-        links.add(link);
-
+        links.remove(indexLink);
+        links.add(newLink);
         System.out.println(links);
-        linkService.editLink(links);
 
-        Node source = (Node)  event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
+        linkService.refreshLinks(links);
+
+        nav.navigateToListLinks(event);
     }
 
     @FXML

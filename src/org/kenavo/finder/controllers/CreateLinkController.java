@@ -39,7 +39,7 @@ public class CreateLinkController {
         linkService.createLink(link);
 
         try {
-            navigation.navigateToListProjects(event);
+            navigation.navigateToListLinks(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,7 +48,7 @@ public class CreateLinkController {
     @FXML
     private void cancelProject(ActionEvent event){
         try {
-            navigation.navigateToListProjects(event);
+            navigation.navigateToListLinks(event);
         } catch (IOException e) {
             e.printStackTrace();
         }

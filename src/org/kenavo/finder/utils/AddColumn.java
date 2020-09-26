@@ -1,14 +1,24 @@
 package org.kenavo.finder.utils;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import org.kenavo.finder.loaders.EditLoader;
+import org.kenavo.finder.Main;
 import org.kenavo.finder.models.Link;
+import org.kenavo.finder.services.LinkService;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddColumn {
+
+    private static final Navigation nav = new Navigation();
+    private static final LinkService linkService = new LinkService();
 
     public static Callback<TableColumn<Link, Void>, TableCell<Link, Void>> addDeleteButton(TableView<Link> table) {
 
@@ -20,7 +30,13 @@ public class AddColumn {
                     final Button btn = new Button("Delete");
 
                     {
-                        btn.setOnAction(event -> table.getItems().remove(getIndex()));
+                        btn.setOnAction(event -> {
+                            List<Link> links = Main.links;
+                            links.clear();
+                            ObservableList<Link> observableLinks = table.getItems();
+                            links = new ArrayList<>(observableLinks);
+                            linkService.refreshLinks(links);
+                        });
                     }
 
                     @Override
@@ -49,9 +65,12 @@ public class AddColumn {
 
                     {
                         btn.setOnAction(event -> {
-                            EditLoader loader = new EditLoader();
                             Link link = table.getItems().get(getIndex());
-                            loader.showPersonEditDialog(link);
+                            try {
+                                nav.navigateToEditLink(event, link);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         });
                     }
 

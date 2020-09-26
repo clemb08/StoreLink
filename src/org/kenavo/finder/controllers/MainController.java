@@ -22,11 +22,11 @@ public class MainController implements Initializable {
 
     @FXML
     public void navigateToCreateProject(MouseEvent event) throws IOException {
-        navigation.navigateToCreateProject(event);
+        navigation.navigateToCreateLink(event);
     }
 
     @FXML
     public void navigateToListProjects(MouseEvent event) throws IOException {
-        navigation.navigateToListProjects(event);
+        navigation.navigateToListLinks(event);
     }
 }

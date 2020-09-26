@@ -16,6 +16,7 @@ public class LinkService {
     public void createLink(Link link) {
         File file = new File("src/resources/links/links.txt");
         String jsonLink = JSON.toJSONString(link);
+        Main.links.add(link);
 
         if(!file.exists()){
             try {
@@ -64,14 +65,19 @@ public class LinkService {
     public Link findById(String id){
         List<Link> links = Main.links;
         Link foundLink = new Link();
-        for(int i = 0; i >= links.size(); i++){
-            if(links.get(i).getId() == id);
-            foundLink = links.get(i);
+        for (Link link : links) {
+            if (link.getId().equals(id))
+                foundLink = link;
         }
         return foundLink;
     }
 
-    public void editLink(List<Link> links){
+    public int findIndex(Link link){
+        List<Link> links = Main.links;
+        return links.indexOf(link);
+    }
+
+    public void refreshLinks(List<Link> links){
         File file = new File("src/resources/links/links.txt");
         file.delete();
 
@@ -82,15 +88,15 @@ public class LinkService {
         }
 
         try {
-            for (int i = 0; i < links.size(); i++) {
-                String jsonLink = JSON.toJSONString(links.get(i));
-                FileWriter fw = new FileWriter(file, true);
-                BufferedWriter bw = new BufferedWriter(fw);
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (Link link : links) {
+                String jsonLink = JSON.toJSONString(link);
                 System.out.println(jsonLink);
                 bw.write(jsonLink);
                 bw.newLine();
-                bw.close();
             }
+            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
