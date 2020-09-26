@@ -27,8 +27,7 @@ public class Link {
     }
 
     public void setId(String title) {
-        String id = title + (Math.random() * (10000 - 0 + 1) + 0);
-        Id = id;
+        Id = title + (Math.random() * (10000 + 1) + 0);
     }
 
     public String getTitle() {

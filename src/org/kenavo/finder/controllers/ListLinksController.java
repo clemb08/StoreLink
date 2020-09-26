@@ -18,9 +18,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ListProjectsController implements Initializable {
+public class ListLinksController implements Initializable {
 
     @FXML private TableView<Link> tableLinks;
+
     @FXML private TableColumn<Link, String> columnTitle;
     @FXML private TableColumn<Link, String> columnGoTo;
     @FXML private TableColumn<Link, String> columnDescription;
@@ -41,9 +42,14 @@ public class ListProjectsController implements Initializable {
         AddColumn.addLinkButton(columnGoTo);
         //Add Button Delete
         columnDelete.setCellValueFactory(new PropertyValueFactory<>(""));
-        Callback<TableColumn<Link, Void>, TableCell<Link, Void>> cellFactory
+        Callback<TableColumn<Link, Void>, TableCell<Link, Void>> cellDelete
                 = AddColumn.addDeleteButton(tableLinks);
-        columnDelete.setCellFactory(cellFactory);
+        columnDelete.setCellFactory(cellDelete);
+        //Add Button Edit
+        columnEdit.setCellValueFactory(new PropertyValueFactory<>(""));
+        Callback<TableColumn<Link, Void>, TableCell<Link, Void>> cellEdit
+                = AddColumn.addEditButton(tableLinks);
+        columnEdit.setCellFactory(cellEdit);
 
         tableLinks.setItems(links);
     }

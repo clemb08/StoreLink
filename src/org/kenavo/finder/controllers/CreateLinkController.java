@@ -14,7 +14,7 @@ import org.kenavo.finder.utils.Navigation;
 
 import java.io.IOException;
 
-public class CreateProjectController {
+public class CreateLinkController {
 
     @FXML private TextField newTitle;
     @FXML private TextField newLink;

@@ -5,6 +5,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+import org.kenavo.finder.loaders.EditLoader;
 import org.kenavo.finder.models.Link;
 
 public class AddColumn {
@@ -20,6 +21,38 @@ public class AddColumn {
 
                     {
                         btn.setOnAction(event -> table.getItems().remove(getIndex()));
+                    }
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                        setText(null);
+                    }
+                };
+            }
+        };
+    }
+
+    public static Callback<TableColumn<Link, Void>, TableCell<Link, Void>> addEditButton(TableView<Link> table) {
+
+        return new Callback<>() {
+            @Override
+            public TableCell call(final TableColumn<Link, Void> param) {
+                return new TableCell<Link, String>() {
+
+                    final Button btn = new Button("Edit");
+
+                    {
+                        btn.setOnAction(event -> {
+                            EditLoader loader = new EditLoader();
+                            Link link = table.getItems().get(getIndex());
+                            loader.showPersonEditDialog(link);
+                        });
                     }
 
                     @Override

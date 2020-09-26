@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kenavo.finder.controllers.EditLinkController">
+    <children>
+        <GridPane layoutX="11.0" layoutY="86.0" prefHeight="218.0" prefWidth="578.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="54.0" minHeight="7.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="92.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="80.0" minHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label fx:id="linkTitle" text="Title" />
+                <Label fx:id="linkLink" text="Link" GridPane.rowIndex="1" />
+                <Label fx:id="linkDescription" text="Description" GridPane.rowIndex="2" />
+                <Label fx:id="linkKeywords" text="Key-words" GridPane.rowIndex="3" />
+                <TextField fx:id="editTitle" GridPane.columnIndex="1" />
+                <TextField fx:id="editLink" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextArea fx:id="editDescription" prefHeight="90.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="editKeyword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+        <MenuBar layoutX="12.0" layoutY="14.0" prefHeight="33.0" prefWidth="600.0" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label alignment="CENTER" layoutY="37.0" prefHeight="35.0" prefWidth="600.0" text="New Link">
+            <font>
+                <Font size="29.0" />
+            </font>
+        </Label>
+        <Button fx:id="editLinkButton" layoutX="454.0" layoutY="368.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" onAction="#editLink" text="Edit" />
+        <Button fx:id="cancelLinkButton" layoutX="379.0" layoutY="368.0" mnemonicParsing="false" onAction="#cancelEditLink" text="Cancel" />
+        <Label fx:id="addKeyword" layoutX="50.0" layoutY="323.0" onMouseClicked="#addKeywords" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+        <Label fx:id="deleteKeyword" layoutX="133.0" layoutY="323.0" onMouseClicked="#deleteKeywords" text="Delete">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+        <ListView fx:id="editListViewKeywords" layoutX="302.0" layoutY="302.0" prefHeight="58.0" prefWidth="289.0" />
+      <TextField fx:id="editId" editable="false" layoutX="411.0" layoutY="42.0" visible="false" />
+    </children>
+</AnchorPane>
